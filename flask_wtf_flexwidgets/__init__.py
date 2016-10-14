@@ -188,7 +188,7 @@ form_template = Template(form_macro_template + """
 
 
 class FlexWidgetAbstract(object):
-    def __init__(self, field, **kwargs):
+    def __call__(self, field, **kwargs):
 
         for key, value in iteritems(_default_widget_config):
             if key.lower() not in kwargs.keys():
@@ -196,7 +196,7 @@ class FlexWidgetAbstract(object):
         for key, value in iteritems(get_config(current_app, widget=True)):
             if kwargs.get(key.lower(), None) is None and value is not None:
                 kwargs[key] = value
-        self.render(field, **kwargs)
+        return self.render(field, **kwargs)
 
     def render(self, field, **kwargs):
         raise NotImplementedError
