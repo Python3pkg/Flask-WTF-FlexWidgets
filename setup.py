@@ -19,13 +19,13 @@ requirements = ['Flask', 'Flask-WTF']
 
 
 setup(
-    name="Flask-Navigate",
+    name="Flask-WTF-FlexWidgets",
     version="0.1.0",
     author="Bill Schumacher",
     author_email="bill@servernet.co",
     description="A flask extension that provides customizable WTF widgets and macros.",
     license="LGPLv3",
-    keywords="flask nav navigation menu",
+    keywords="flask wtf widget",
     url="https://github.com/bschumacher/Flask-WTF-FlexWidgets",
     install_requirements=requirements,
     packages=find_packages(),
