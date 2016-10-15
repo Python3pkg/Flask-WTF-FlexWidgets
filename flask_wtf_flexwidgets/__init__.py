@@ -166,11 +166,11 @@ def create_blueprint(state, import_name):
 
 
 form_macro_template = """
-{%- macro render_form(form, method="POST", action=None, upload=False) -%}
+{% macro render_form(form, method="POST", action=None, upload=False) %}
     <form
      method="{{ method }}"
-     {%- if action != None -%} action="{{ action }}"{% -endif -%}
-     {%- if upload -%} enctype="multipart/form-data"{%- endif -%}
+     {% if action != None -%} action="{{ action }}"{% endif -%}
+     {% if upload %} enctype="multipart/form-data"{% endif -%}
     >
         {{ form.hidden_tag() }}
         {% for field in form %}
@@ -179,7 +179,7 @@ form_macro_template = """
             No fields in form to render.
         {% endfor %}
     </form>
-{%- endmacro -%}
+{% endmacro -%}
 """
 
 form_template = Template(form_macro_template + """
