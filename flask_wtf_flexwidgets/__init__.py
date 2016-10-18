@@ -197,6 +197,9 @@ def render_form_template(form):
 
 
 class FlexWidgetAbstract(object):
+    def __init__(self):
+        pass
+
     def __call__(self, field, **kwargs):
 
         for key, value in iteritems(_default_widget_config):
