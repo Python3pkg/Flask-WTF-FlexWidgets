@@ -172,7 +172,9 @@ form_macro_template = """
      {% if action != None -%} action="{{ action }}"{% endif -%}
      {% if upload %} enctype="multipart/form-data"{% endif -%}
     >
-        {{ form.hidden_tag() }}
+        {% if form.__getattribute__('hidden_tag') %}
+            {{ form.hidden_tag() }}
+        {% endif %}
         {% for field in form %}
             {{ field }}
         {% else %}
