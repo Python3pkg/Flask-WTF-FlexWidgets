@@ -191,8 +191,7 @@ form_template = Template(form_macro_template + """
 
 def render_form_template(form):
     has_hidden_tag = False
-    if form.__getattribute__('hidden_tag'):
-        print("Has hidden_tag()")
+    if hasattr(form, 'hidden_tag'):
         has_hidden_tag = True
     return form_template.render(form=form, has_hidden_tag=has_hidden_tag)
 
