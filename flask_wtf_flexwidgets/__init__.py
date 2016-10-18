@@ -172,7 +172,7 @@ form_macro_template = """
      {% if action != None -%} action="{{ action }}"{% endif -%}
      {% if upload %} enctype="multipart/form-data"{% endif -%}
     >
-        {% if form.__getattribute__('hidden_tag', False) %}
+        {% if has_hidden_tag %}
             {{ form.hidden_tag() }}
         {% endif %}
         {% for field in form %}
@@ -187,6 +187,14 @@ form_macro_template = """
 form_template = Template(form_macro_template + """
 {{ render_form(form, method=method, action=action, upload=upload) }}
 """)
+
+
+def render_form_template(form):
+    has_hidden_tag = False
+    if form.__getattribute__('hidden_tag'):
+        print("Has hidden_tag()")
+        has_hidden_tag = True
+    return form_template.render(form=form, has_hidden_tag=has_hidden_tag)
 
 
 class FlexWidgetAbstract(object):
