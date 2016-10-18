@@ -181,12 +181,35 @@ form_macro_template = """
             No fields in form to render.
         {% endfor %}
     </form>
-{% endmacro -%}
+{% endmacro %}
 """
 
 form_template = Template(form_macro_template + """
 {{ render_form(form, method=method, action=action, upload=upload) }}
 """)
+
+field_top_template = """
+<div {% if html_attr_id -%}id="{{ html_attr_id}}" {% endif -%}
+ class="form_field{%- if html_attr_class -%} {{ html_attr_class }}{% endif -%}"
+>
+    <div {% if html_attr_label_id -%}id="{{ html_attr_label_id }}" {% endif -%}
+     class="form_field_label{%- if html_attr_label_class -%} {{ html_attr_label_class }}{%- endif -%}"
+    >
+        {{ field.label }}
+    </div>
+    <div {% if html_attr_input_container_id -%}id="{{ html_attr_input_container_id }}" {% endif -%}
+     class="form_field_input_container{%- if html_attr_input_container_class %} {{ html_attr_input_container_class }}{%- endif -%}"
+    >
+"""
+
+field_bottom_template = """
+    </div>
+</div>
+"""
+
+
+def glue_templates(widget_template):
+    return Template(field_top_template + widget_template + field_bottom_template)
 
 
 def render_form_template(form):
@@ -217,142 +240,71 @@ class FlexWidgetAbstract(object):
 class FlexIntegerWidget(FlexWidgetAbstract):
 
     def render(self, field, **kwargs):
-        return Template("""
-            <div{%- if html_attr_id -%} id="{{ html_attr_id}}"{%- endif -%}
-             class="form_field{%- if html_attr_class -%} {{ html_attr_class }}{% endif -%}"
-            >
-                <div{%- if html_attr_label_id -%} id="{{ html_attr_label_id }}"{%- endif -%}
-                 class="form_field_label{%- if html_attr_label_class -%} {{ html_attr_label_class }}{%- endif -%}"
-                >
-                    {{ field.label }}
-                </div>
-                <div{%- if html_attr_input_container_id -%} id="{{ html_attr_input_container_id }}"{%- endif -%}
-                 class="form_field_input_container{%- if html_attr_input_container_class -%}
-                                                      {{ html_attr_input_container_class }}
-                                                  {%- endif -%}"
-                >
-                    <input
-                     type="number"
-                     name="{{ field.name }}"
-                     value="{{ field.value }}"
-                     {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
-                     class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
-                    />
-                </div>
-            </div>
+        return glue_templates("""
+            <input
+                 type="number"
+                 name="{{ field.name }}"
+                 value="{{ field.value }}"
+                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
+                 class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
+            />
         """).render(field=field, **kwargs)
 
 
 class FlexDateWidget(FlexWidgetAbstract):
 
     def render(self, field, **kwargs):
-        return Template("""
-            <div{%- if html_attr_id -%} id="{{ html_attr_id}}"{%- endif -%}
-             class="form_field{%- if html_attr_class -%} {{ html_attr_class }}{% endif -%}"
-            >
-                <div{%- if html_attr_label_id -%} id="{{ html_attr_label_id }}"{%- endif -%}
-                 class="form_field_label{%- if html_attr_label_class -%} {{ html_attr_label_class }}{%- endif -%}"
-                >
-                    {{ field.label }}
-                </div>
-                <div{%- if html_attr_input_container_id -%} id="{{ html_attr_input_container_id }}"{%- endif -%}
-                 class="form_field_input_container{%- if html_attr_input_container_class -%}
-                                                      {{ html_attr_input_container_class }}{%- endif -%}"
-                >
-                    <input
-                     type="date"
-                     name="{{ field.name }}"
-                     value="{{ field.value }}"
-                     {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
-                     class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
-                    />
-                </div>
-            </div>
+        return glue_templates("""
+            <input
+                 type="date"
+                 name="{{ field.name }}"
+                 value="{{ field.value }}"
+                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
+                 class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
+            />
         """).render(field=field, **kwargs)
 
 
 class FlexDateTimeWidget(FlexWidgetAbstract):
 
     def render(self, field, **kwargs):
-        return Template("""
-            <div{%- if html_attr_id -%} id="{{ html_attr_id}}"{%- endif -%}
-             class="form_field{%- if html_attr_class -%} {{ html_attr_class }}{% endif -%}"
-            >
-                <div{%- if html_attr_label_id -%} id="{{ html_attr_label_id }}"{%- endif -%}
-                 class="form_field_label{%- if html_attr_label_class -%} {{ html_attr_label_class }}{%- endif -%}"
-                >
-                    {{ field.label }}
-                </div>
-                <div{%- if html_attr_input_container_id -%} id="{{ html_attr_input_container_id }}"{%- endif -%}
-                 class="form_field_input_container{%- if html_attr_input_container_class -%}
-                                                      {{ html_attr_input_container_class }}{%- endif -%}"
-                >
-                    <input
-                     type="datetime"
-                     name="{{ field.name }}"
-                     value="{{ field.value }}"
-                     {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
-                     class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
-                    />
-                </div>
-            </div>
+        return glue_templates("""
+            <input
+                 type="datetime"
+                 name="{{ field.name }}"
+                 value="{{ field.value }}"
+                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
+                 class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
+            />
         """).render(field=field, **kwargs)
 
 
 class FlexStringWidget(FlexWidgetAbstract):
 
     def render(self, field, **kwargs):
-        return Template("""
-            <div{%- if html_attr_id -%} id="{{ html_attr_id}}"{%- endif -%}
-             class="form_field{%- if html_attr_class -%} {{ html_attr_class }}{% endif -%}"
-            >
-                <div{%- if html_attr_label_id -%} id="{{ html_attr_label_id }}"{%- endif -%}
-                 class="form_field_label{%- if html_attr_label_class -%} {{ html_attr_label_class }}{%- endif -%}"
-                >
-                    {{ field.label }}
-                </div>
-                <div{%- if html_attr_input_container_id -%} id="{{ html_attr_input_container_id }}"{%- endif -%}
-                 class="form_field_input_container{%- if html_attr_input_container_class -%}
-                                                      {{ html_attr_input_container_class }}{%- endif -%}"
-                >
-                    <input
-                     type="text"
-                     name="{{ field.name }}"
-                     value="{{ field.value }}"
-                     {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
-                     class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
-                    />
-                </div>
-            </div>
+        return glue_templates("""
+            <input
+                 type="text"
+                 name="{{ field.name }}"
+                 value="{{ field.value }}"
+                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
+                 class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
+            />
         """).render(field=field, **kwargs)
 
 
 class FlexBoolWidget(FlexWidgetAbstract):
 
     def render(self, field, **kwargs):
-        return Template("""
-            <div{%- if html_attr_id -%} id="{{ html_attr_id}}"{%- endif -%}
-             class="form_field{%- if html_attr_class -%} {{ html_attr_class }}{% endif -%}"
-            >
-                <div{%- if html_attr_label_id -%} id="{{ html_attr_label_id }}"{%- endif -%}
-                 class="form_field_label{%- if html_attr_label_class -%} {{ html_attr_label_class }}{%- endif -%}"
-                >
-                    {{ field.label }}
-                </div>
-                <div{%- if html_attr_input_container_id -%} id="{{ html_attr_input_container_id }}"{%- endif -%}
-                 class="form_field_input_container{%- if html_attr_input_container_class -%}
-                                                      {{ html_attr_input_container_class }}{%- endif -%}"
-                >
-                    <input
-                     type="checkbox"
-                     name="{{ field.name }}"
-                     value="{{ field.value }}"
-                     {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
-                     class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
-                     {%- if field.checked -%}checked=CHECKED{%- endif -%}
-                    />
-                </div>
-            </div>
+        return glue_templates("""
+            <input
+                 type="checkbox"
+                 name="{{ field.name }}"
+                 value="{{ field.value }}"
+                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
+                 class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
+                 {%- if field.checked -%}checked=CHECKED{%- endif -%}
+            />
         """).render(field=field, **kwargs)
 
 
