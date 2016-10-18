@@ -260,7 +260,7 @@ class FlexDateWidget(FlexWidgetAbstract):
                                                       {{ html_attr_input_container_class }}{%- endif -%}"
                 >
                     <input
-                     type="number"
+                     type="date"
                      name="{{ field.name }}"
                      value="{{ field.value }}"
                      {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
@@ -288,7 +288,7 @@ class FlexDateTimeWidget(FlexWidgetAbstract):
                                                       {{ html_attr_input_container_class }}{%- endif -%}"
                 >
                     <input
-                     type="number"
+                     type="datetime"
                      name="{{ field.name }}"
                      value="{{ field.value }}"
                      {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
@@ -316,7 +316,7 @@ class FlexStringWidget(FlexWidgetAbstract):
                                                       {{ html_attr_input_container_class }}{%- endif -%}"
                 >
                     <input
-                     type="number"
+                     type="text"
                      name="{{ field.name }}"
                      value="{{ field.value }}"
                      {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
@@ -344,11 +344,12 @@ class FlexBoolWidget(FlexWidgetAbstract):
                                                       {{ html_attr_input_container_class }}{%- endif -%}"
                 >
                     <input
-                     type="number"
+                     type="checkbox"
                      name="{{ field.name }}"
                      value="{{ field.value }}"
                      {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
                      class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
+                     {%- if field.checked -%}checked=CHECKED{%- endif -%}
                     />
                 </div>
             </div>
