@@ -209,7 +209,13 @@ field_bottom_template = """
 
 
 def glue_templates(widget_template):
-    return Template(field_top_template + widget_template + field_bottom_template)
+    return Template("""{top_template}
+        {widget_template}
+    {bottom_template}
+    """.format(top_template=field_top_template,
+               widget_template=widget_template,
+               bottom_template=field_bottom_template)
+    )
 
 
 def render_form_template(form):
@@ -398,4 +404,18 @@ class FlexSelectMultipleWidget(FlexWidgetAbstract):
                     {% endfor %}
                 </div>
             </div>
+        """).render(field=field, **kwargs)
+
+
+class FlexSubmitWidget(FlexWidgetAbstract):
+
+    def render(self, field, **kwargs):
+        return glue_templates("""
+            <input
+                 type="submit"
+                 name="{{ field.name }}"
+                 value="{{ field.value }}"
+                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
+                 class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
+            />
         """).render(field=field, **kwargs)
