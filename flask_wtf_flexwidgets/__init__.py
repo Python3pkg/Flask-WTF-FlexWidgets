@@ -62,11 +62,11 @@ css_template = """
 }
 
 .form_field_input {
-    margin: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px; height: 25px;
 }
 
 .form_field_input input[type='checkbox'] {
-    margin-top: 8px;
+    margin: 5px 5px 5px 5px;
 }
 
 .form_field_input_container {
@@ -81,7 +81,6 @@ css_template = """
 .form_field_input_container_item_selected {
     flex: 1;
 }
-
 """
 
 
