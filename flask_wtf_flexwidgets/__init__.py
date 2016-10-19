@@ -222,6 +222,7 @@ def render_form_template(form):
     has_hidden_tag = False
     if hasattr(form, 'hidden_tag'):
         has_hidden_tag = True
+    print(dir(form))
     return form_template.render(form=form, has_hidden_tag=has_hidden_tag)
 
 
@@ -408,13 +409,13 @@ class FlexSelectMultipleWidget(FlexWidgetAbstract):
 
 
 class FlexSubmitWidget(FlexWidgetAbstract):
-
+    # TODO: Fix the template.
     def render(self, field, **kwargs):
-        return glue_templates("""
+        return Template("""
             <input
                  type="submit"
                  name="{{ field.name }}"
-                 value="{{ field.value }}"
+                 value="{{ field.label.text }}"
                  {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
                  class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
             />
