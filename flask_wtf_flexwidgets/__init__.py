@@ -267,7 +267,7 @@ class FlexIntegerWidget(FlexWidgetAbstract):
             <input
                  type="number"
                  name="{{ field.name }}"
-                 value="{{ field.value }}"
+                 value="{% if field.data %}{{ field.data }}{% endif %}"
                  {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif %} class="form_field_input
                  {%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
             />
@@ -281,7 +281,7 @@ class FlexDateWidget(FlexWidgetAbstract):
             <input
                  type="date"
                  name="{{ field.name }}"
-                 value="{{ field.value }}"
+                 value="{% if field.data %}{{ field.data }}{% endif %}"
                  {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif %} class="form_field_input
                  {%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
             />
@@ -295,7 +295,7 @@ class FlexDateTimeWidget(FlexWidgetAbstract):
             <input
                  type="datetime"
                  name="{{ field.name }}"
-                 value="{{ field.value }}"
+                 value="{% if field.data %}{{ field.data }}{% endif %}"
                  {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif %} class="form_field_input
                  {%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
             />
@@ -309,7 +309,7 @@ class FlexStringWidget(FlexWidgetAbstract):
             <input
                  type="text"
                  name="{{ field.name }}"
-                 value="{{ field.value }}"
+                 value="{% if field.data %}{{ field.data }}{% endif %}"
                  {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif %} class="form_field_input
                  {%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
             />
@@ -323,7 +323,7 @@ class FlexBoolWidget(FlexWidgetAbstract):
             <input
                  type="checkbox"
                  name="{{ field.name }}"
-                 value="{{ field.value }}"
+                 value="{% if field.data %}{{ field.data }}{% endif %}"
                  {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif %} class="form_field_input
                  {%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
                  {%- if field.checked -%}checked=CHECKED{%- endif -%}
