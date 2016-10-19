@@ -222,7 +222,6 @@ def render_form_template(form):
     has_hidden_tag = False
     if hasattr(form, 'hidden_tag'):
         has_hidden_tag = True
-    print(dir(form))
     return form_template.render(form=form, has_hidden_tag=has_hidden_tag)
 
 
