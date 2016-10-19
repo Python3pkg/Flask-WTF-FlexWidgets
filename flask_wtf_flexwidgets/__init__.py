@@ -213,6 +213,15 @@ field_top_template = """
 field_bottom_template = """
     </div>
 </div>
+{% if field.errors %}
+<div>
+    <ul>
+    {% for error in field.errors %}
+        <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
 """
 
 
