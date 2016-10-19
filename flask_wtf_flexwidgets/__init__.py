@@ -49,7 +49,7 @@ _default_widget_config = {
 
 css_template = """
 .form_field {
-    display: flex;
+    display: flex; max-width: 400px; margin: 5px;
 }
 
 .form_field_label {
@@ -57,8 +57,12 @@ css_template = """
     flex: 1;
 }
 
-.form_field_input {
+.form_field_label label {
+    height: 25px;
+}
 
+.form_field_input {
+    margin: 5px;
 }
 
 .form_field_input_container {
