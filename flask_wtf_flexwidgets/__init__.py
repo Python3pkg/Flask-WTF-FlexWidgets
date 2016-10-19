@@ -251,8 +251,8 @@ class FlexIntegerWidget(FlexWidgetAbstract):
                  type="number"
                  name="{{ field.name }}"
                  value="{{ field.value }}"
-                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
-                 class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
+                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif %} class="form_field_input
+                 {%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
             />
         """).render(field=field, **kwargs)
 
@@ -265,8 +265,8 @@ class FlexDateWidget(FlexWidgetAbstract):
                  type="date"
                  name="{{ field.name }}"
                  value="{{ field.value }}"
-                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
-                 class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
+                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif %} class="form_field_input
+                 {%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
             />
         """).render(field=field, **kwargs)
 
@@ -279,8 +279,8 @@ class FlexDateTimeWidget(FlexWidgetAbstract):
                  type="datetime"
                  name="{{ field.name }}"
                  value="{{ field.value }}"
-                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
-                 class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
+                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif %} class="form_field_input
+                 {%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
             />
         """).render(field=field, **kwargs)
 
@@ -293,8 +293,8 @@ class FlexStringWidget(FlexWidgetAbstract):
                  type="text"
                  name="{{ field.name }}"
                  value="{{ field.value }}"
-                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
-                 class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
+                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif %} class="form_field_input
+                 {%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
             />
         """).render(field=field, **kwargs)
 
@@ -307,8 +307,8 @@ class FlexBoolWidget(FlexWidgetAbstract):
                  type="checkbox"
                  name="{{ field.name }}"
                  value="{{ field.value }}"
-                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
-                 class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
+                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif %} class="form_field_input
+                 {%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
                  {%- if field.checked -%}checked=CHECKED{%- endif -%}
             />
         """).render(field=field, **kwargs)
@@ -415,7 +415,7 @@ class FlexSubmitWidget(FlexWidgetAbstract):
                  type="submit"
                  name="{{ field.name }}"
                  value="{{ field.label.text }}"
-                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif -%}
-                 class="form_field_input{%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
+                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif %} class="form_field_input
+                 {%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
             />
         """).render(field=field, **kwargs)
