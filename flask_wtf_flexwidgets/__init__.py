@@ -65,7 +65,7 @@ css_template = """
     margin: 5px 5px 5px 5px; height: 25px;
 }
 
-.form_field_input input[type='checkbox'] {
+.form_field_input_container input[type=checkbox] {
     margin: 5px 5px 5px 5px;
 }
 
