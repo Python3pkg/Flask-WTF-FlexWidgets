@@ -49,7 +49,7 @@ _default_widget_config = {
 
 css_template = """
 .form_field {
-    display: flex; max-width: 400px; margin: 5px;
+    display: flex; max-width: 400px; margin: 5px 5px 5px 5px; height: 36px;
 }
 
 .form_field_label {
@@ -58,11 +58,15 @@ css_template = """
 }
 
 .form_field_label label {
-    height: 25px;
+    margin-bottom: 0px; margin-top: 8px;
 }
 
 .form_field_input {
-    margin: 5px;
+    margin: 5px 5px 5px 5px;
+}
+
+.form_field_input input[type='checkbox'] {
+    margin-top: 8px;
 }
 
 .form_field_input_container {
@@ -77,6 +81,7 @@ css_template = """
 .form_field_input_container_item_selected {
     flex: 1;
 }
+
 """
 
 

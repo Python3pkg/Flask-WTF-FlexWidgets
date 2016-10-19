@@ -20,7 +20,7 @@ requirements = ['Flask', 'Flask-WTF']
 
 setup(
     name="Flask-WTF-FlexWidgets",
-    version="0.1.15",
+    version="0.1.16",
     author="Bill Schumacher",
     author_email="bill@servernet.co",
     description="A flask extension that provides customizable WTF widgets and macros.",
