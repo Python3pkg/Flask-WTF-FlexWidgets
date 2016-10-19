@@ -218,11 +218,11 @@ def glue_templates(widget_template):
     )
 
 
-def render_form_template(form):
+def render_form_template(form, method='POST', action='', upload=False):
     has_hidden_tag = False
     if hasattr(form, 'hidden_tag'):
         has_hidden_tag = True
-    return form_template.render(form=form, has_hidden_tag=has_hidden_tag)
+    return form_template.render(form=form, method=method, action=action, upload=upload, has_hidden_tag=has_hidden_tag)
 
 
 class FlexWidgetAbstract(object):
