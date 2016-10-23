@@ -48,6 +48,14 @@ _default_widget_config = {
 }
 
 css_template = """
+.flex_container {
+    display: flex;
+}
+
+.flex_container_item {
+    flex: 1;
+}
+
 .form_field {
     display: flex; max-width: 400px; margin: 5px 5px 5px 5px; height: 36px;
 }
