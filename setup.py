@@ -13,14 +13,14 @@
 ** ensure the GNU Lesser General Public License version 3 requirements
 ** will be met: https://www.gnu.org/licenses/lgpl.html.
 """
-from setuptools import setup  # , find_packages
+from setuptools import setup, find_packages
 
 requirements = ['Flask', 'Flask-WTF']
 
 
 setup(
     name="Flask-WTF-FlexWidgets",
-    version="0.1.24",
+    version="0.1.25",
     author="Bill Schumacher",
     author_email="bill@servernet.co",
     description="A flask extension that provides customizable WTF widgets and macros.",
@@ -28,7 +28,7 @@ setup(
     keywords="flask wtf widget",
     url="https://github.com/bschumacher/Flask-WTF-FlexWidgets",
     install_requires=requirements,
-    # packages=find_packages(),
+    packages=find_packages(),
     # setup_requires=requirements,
     # tests_require=[],
 )
