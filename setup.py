@@ -4,7 +4,7 @@
 
     Author: Bill Schumacher <bill@servernet.co>
     License: LGPLv3
-    Copyright: 2016 Bill Schumacher, Cerebral Power
+    Copyright: 2017 Bill Schumacher, Cerebral Power
 ** GNU Lesser General Public License Usage
 ** This file may be used under the terms of the GNU Lesser
 ** General Public License version 3 as published by the Free Software
@@ -20,7 +20,7 @@ requirements = ['Flask', 'Flask-WTF']
 
 setup(
     name="Flask-WTF-FlexWidgets",
-    version="0.1.22",
+    version="0.1.23",
     author="Bill Schumacher",
     author_email="bill@servernet.co",
     description="A flask extension that provides customizable WTF widgets and macros.",

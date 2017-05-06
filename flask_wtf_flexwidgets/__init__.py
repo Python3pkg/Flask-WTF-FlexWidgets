@@ -4,7 +4,7 @@
 
     Author: Bill Schumacher <bill@servernet.co>
     License: LGPLv3
-    Copyright: 2016 Bill Schumacher, Cerebral Power
+    Copyright: 2017 Bill Schumacher, Cerebral Power
 ** GNU Lesser General Public License Usage
 ** This file may be used under the terms of the GNU Lesser
 ** General Public License version 3 as published by the Free Software
@@ -243,11 +243,12 @@ def glue_templates(widget_template):
     )
 
 
-def render_form_template(form, method='POST', action='', upload=False):
+def render_form_template(form, method='POST', action='', upload=False, *args, **kwargs):
     has_hidden_tag = False
     if hasattr(form, 'hidden_tag'):
         has_hidden_tag = True
-    return form_template.render(form=form, method=method, action=action, upload=upload, has_hidden_tag=has_hidden_tag)
+    return form_template.render(form=form, method=method, action=action, upload=upload, has_hidden_tag=has_hidden_tag,
+                                *args, **kwargs)
 
 
 class FlexWidgetAbstract(object):
@@ -316,6 +317,20 @@ class FlexStringWidget(FlexWidgetAbstract):
         return glue_templates("""
             <input
                  type="text"
+                 name="{{ field.name }}"
+                 value="{% if field.data %}{{ field.data }}{% endif %}"
+                 {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif %} class="form_field_input
+                 {%- if html_attr_input_class -%} {{ html_attr_input_class }}{%- endif -%}"
+            />
+        """).render(field=field, **kwargs)
+
+
+class FlexPasswordWidget(FlexWidgetAbstract):
+
+    def render(self, field, **kwargs):
+        return glue_templates("""
+            <input
+                 type="password"
                  name="{{ field.name }}"
                  value="{% if field.data %}{{ field.data }}{% endif %}"
                  {%- if html_attr_input_id -%}id="{{ html_attr_input_id }}"{%- endif %} class="form_field_input
