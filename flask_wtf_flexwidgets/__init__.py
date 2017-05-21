@@ -98,7 +98,7 @@ def get_config(app, widget=False):
     :param app: The application to inspect
     :param widget: Only return the HTML customization for widgets.
     """
-    items = app.config.items()
+    items = list(app.config.items())
     prefix = 'WTF_FLEX_WIDGETS_'
     if widget:
         prefix += 'HTML'
@@ -110,7 +110,7 @@ def get_config(app, widget=False):
 
 
 def _get_state(app, **kwargs):
-    for key, value in get_config(app).items():
+    for key, value in list(get_config(app).items()):
         kwargs[key.lower()] = value
 
     kwargs.update(dict(
@@ -126,7 +126,7 @@ class _FlexWidgetState(object):
         self.blueprint_name = ""
         self.url_prefix = ""
         self.subdomain = ""
-        for key, value in kwargs.items():
+        for key, value in list(kwargs.items()):
             setattr(self, key.lower(), value)
 
 
@@ -141,7 +141,7 @@ class WTFFlexWidgets(object):
 
     def init_app(self, app, register_blueprint=True):
 
-        for key, value in _default_config.items():
+        for key, value in list(_default_config.items()):
             app.config.setdefault('WTF_FLEX_WIDGETS_' + key, value)
 
         if hasattr(app, 'teardown_appcontext'):
@@ -258,7 +258,7 @@ class FlexWidgetAbstract(object):
     def __call__(self, field, **kwargs):
 
         for key, value in iteritems(_default_widget_config):
-            if key.lower() not in kwargs.keys():
+            if key.lower() not in list(kwargs.keys()):
                 kwargs[key] = value
         for key, value in iteritems(get_config(current_app, widget=True)):
             if kwargs.get(key.lower(), None) is None and value is not None:
